@@ -1,0 +1,123 @@
+/*== 基底架構 ==*/
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box; /*==避免超出螢幕外 ;外加的margin padding 將不影響整體外圍*/
+}
+
+body{
+    font-family: sans-serif;
+}
+
+/*== 導行列 底色+長寬 ==*/
+nav{
+    background: #0082e6;
+    height: 80px;   /*== 上方導航條 底色 高80px==*/
+    width: 100%;
+}
+/*== 左上 logo 設計 ==*/
+label.logo{
+    color: white;
+    font-size: 35px;
+    line-height: 80px;  /*== 高度同 上方導航條 >>把menu擠至 下方(導行列 外) ==*/
+    padding: 0 100px; /*== 上下0 ,左右100 ==*/
+    font-weight: bold;
+}
+
+/*== 右上 list ==*/
+nav ul{
+    float: right;   /*== 浮至 logo右邊 (導行列 內) ==*/
+    margin-right: 20px;
+}
+nav ul li{
+    display: inline-block;  /*== 水平排列 ;當螢幕縮小時 上下重疊有 { 行高 } */
+                            /*== 寬度不夠時 換到下一列(導行列 下)*/
+    line-height: 80px;
+    margin: 0 5px;
+}
+
+nav ul li a{
+    color: white;
+    font-size: 17px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase; /*== 轉換成大寫英文*/
+}
+
+a.active,a:hover{
+    background: #169bff;
+    transition: .5s;
+}
+/*== 調整 menu 圖示  ==*/
+.checkbtn{
+    font-size: 30px;    /*調整 圖示 大小*/
+    color: white;
+    float: right;
+    line-height: 80px;  /*行高 等同 導行列高*/
+    margin-right: 40px;
+    cursor: pointer;
+    display:none;   /*隱藏 menu 圖示*/
+}
+
+#check{
+    display: none;
+}
+
+@media(max-width:980px){
+    /*縮小 左上 logo*/
+    label.logo{
+        font-size: 30px;
+        padding-left: 50px;
+    }
+    nav ul li a{
+        font-size: 16px;
+    }
+}
+@media(max-width:872px){
+    .checkbtn{
+        display: block; /*== 獨立成一個block 顯示出 menu icon*/
+    }
+
+    ul{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        /*background: #2c3e50;*/
+        backdrop-filter: blur(10px); 
+        top: 80px;
+        left: -100%; /*==完成 手機 list後 隱藏*/
+        text-align: center;
+        transition: all .5s;
+    }
+
+    nav ul li{
+        display: block; /*每個 li 都成獨立一行 (獨立成一個block)*/
+        margin: 50px 0;
+        line-height: 30px;
+    }
+
+    nav ul li a{
+        font-size: 20px;
+    }
+
+    a:hover,a.active{
+        background: none;
+        color: #0082e6;
+        
+    }
+
+    /*== 開啟/關閉 菜單*/
+    #check:checked ~ ul{    /* 點下menu後 左滑出，再次點擊後 復歸 */
+        left: 0;
+    }
+}
+
+/*== 主畫面 圖  ==*/
+section{
+    background: url(img/lr-blue.jpg) no-repeat;
+    background-size: cover;
+    height: calc(100vh - 80px);
+    
+}
